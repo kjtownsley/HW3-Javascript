@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Psychic Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
+</head>
+
+<body>
+    <div class="container">
+        <div class="col-md-12 content">
+            <h1>The Psychic Game</h1>
+            <p>Guess what letter I'm thinking...</p>
+            <h2>Press any letter to begin!</h2>
+
+            <p id="wins">Wins: 0</p>
+
+            <p id="losses">Losses: 0</p>
+
+            <p id="guesses-left">Guesses Left: 10</p>
+
+            <p id="guesses-so-far">Your Guesses So Far:</p>
+        </div>   
+    </div>
+
+<script>
+
+var lettersArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var winsNum;
+var lossesNum;
+var guessesLeftNum;
+var lettersGuessedArray = [];
+var guessedLetter = null;
+var winningLetter = lettersArray[Math.floor(Math.random() * lettersArray.length)];
+
+
+function reset() {
+    guessesLeftNum = 10;
+    lettersGuessedArray = [];
+    winningLetter = lettersArray[Math.floor(Math.random() * lettersArray.length)];
+}
+
+
+document.onkeyup = function(event) {
+    var guessedLetter = String.fromCharCode(event.keyCode).toLowerCase();
+    
+
+    if (lettersGuessedArray.indexOf(guessedLetter) < 0 && lettersArray.indexOf(guessedLetter) >= 0) {
+    lettersGuessedArray[lettersGuessedArray.length]=guessedLetter;
+    guessesLeftNum--;
+    }
+
+
+    if (winningLetter === guessedLetter) {
+        alert("The letter was " + winningLetter + "! You Win!!");
+        winsNum++;
+        reset();
+    }
+
+
+    if (guessesLeftNum === 0) {
+        alert("You Lose!! The winning letter was " + winningLetter + "!");
+        lossesNum++;
+        reset();
+    }
+
+
+    $("#guesses-left").text("Guesses Left: " + guessesLeftNum);
+    $("#wins").text("Wins: " + winsNum);
+    $("#losses").text("Losses: " + lossesNum);
+    $("#guesses-so-far").text("Your Guesses So Far: " + lettersGuessedArray.join(", "));
+}
+
+</script>
+
+  
+</body>
+</html>
