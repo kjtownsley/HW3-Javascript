@@ -13,22 +13,22 @@
             <p>Guess what letter I'm thinking...</p>
             <h2>Press any letter to begin!</h2>
 
-            <p>Wins: <span id = "wins"></span></p>
+            <p><span id = "wins"></span></p>
 
-            <p>Losses: <span id = "losses"></span></p>
+            <p><span id = "losses"></span></p>
 
-            <p>Guesses Left: <span id = "guesses-left"></span></p>
+            <p><span id = "guesses-left"></span></p>
 
-            <p>Your Guesses So Far: <span id ="guesses-so-far"></span></p>
+            <p><span id ="guesses-so-far"></span></p>
         </div>   
     </div>
 
 <script>
 
 var lettersArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-var winsNum;
-var lossesNum;
-var guessesLeftNum;
+var winsNum = 0;
+var lossesNum = 0;
+var guessesLeftNum = 10;
 var lettersGuessedArray = [];
 var guessedLetter = null;
 var winningLetter = lettersArray[Math.floor(Math.random() * lettersArray.length)];
@@ -39,6 +39,11 @@ function reset() {
     lettersGuessedArray = [];
     winningLetter = lettersArray[Math.floor(Math.random() * lettersArray.length)];
 }
+
+    document.getElementById("guesses-left").textContent="Guesses Left: " + guessesLeftNum;
+    document.getElementById("wins").textContent="Wins: " + winsNum;
+    document.getElementById("losses").textContent="Losses: " + lossesNum;
+    document.getElementById("guesses-so-far").textContent="Your Guesses So Far: " + lettersGuessedArray.join(", ");
 
 
 document.onkeyup = function(event) {
@@ -65,13 +70,15 @@ document.onkeyup = function(event) {
     }
 
 
-    $("#guesses-left").text("Guesses Left: " + guessesLeftNum);
-    $("#wins").text("Wins: " + winsNum);
-    $("#losses").text("Losses: " + lossesNum);
-    $("#guesses-so-far").text("Your Guesses So Far: " + lettersGuessedArray.join(", "));
+    document.getElementById("guesses-left").textContent="Guesses Left: " + guessesLeftNum;
+    document.getElementById("wins").textContent="Wins: " + winsNum;
+    document.getElementById("losses").textContent="Losses: " + lossesNum;
+    document.getElementById("guesses-so-far").textContent="Your Guesses So Far: " + lettersGuessedArray.join(", ");
 }
 
 </script>
+
+
 
   
 </body>
